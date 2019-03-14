@@ -5,5 +5,6 @@ public class Program {
         Main lesson1 = new Main();
 
         lesson1.main();
+        lesson1.scannerTest();
     }
 }
