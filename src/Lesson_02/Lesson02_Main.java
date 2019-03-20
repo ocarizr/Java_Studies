@@ -13,23 +13,25 @@ import java.util.Scanner;
 public class Lesson02_Main {
     public void main02() {
         PedidoDataSource dataSource = new PedidoDataSource();
-        int command;
+        int command = -1;
         int itemCodigo = 0;
         int pedidoCodigo = 0;
 
         System.out.printf("Digite o nome da filial: ");
         String nomeFilial = new Scanner(System.in).nextLine();
-        System.out.println("Lista de comandos:");
-        System.out.println("1 - Adicionar pedido.");
-        System.out.println("2 - Remover pedido.");
-        System.out.println("3 - Editar pedido.");
-        System.out.println("4 - Listar pedidos");
-        System.out.println("0 - Sair");
-        System.out.printf("Comando: ");
-        command = new Scanner(System.in).nextInt();
-        System.out.println();
 
         while (command != 0) {
+            System.out.println("Lista de comandos:");
+            System.out.println("1 - Adicionar pedido.");
+            System.out.println("2 - Remover pedido.");
+            System.out.println("3 - Editar pedido.");
+            System.out.println("4 - Listar pedidos");
+            System.out.println("0 - Sair");
+            System.out.printf("Comando: ");
+            command = new Scanner(System.in).nextInt();
+            System.out.println();
+
+
             switch (command) {
                 case 0:
                     System.out.println("Obrigado.");
@@ -57,24 +59,26 @@ public class Lesson02_Main {
                 case 2:
                     System.out.printf("Digite o código do pedido: ");
                     int codido = new Scanner(System.in).nextInt();
-                    if(dataSource.removePedido(codido)){
+                    if (dataSource.removePedido(codido)) {
                         System.out.println("Pedido removido com sucesso!");
-                    } else{
+                    } else {
                         System.out.println("Não foi possivel remover este pedido!");
                     }
                     break;
                 case 3:
-
+                    // Edit Pedido method
                     break;
                 case 4:
-
+                    List<Pedido> pedidos = dataSource.get_pedidos();
+                    for (Pedido item : pedidos) {
+                        System.out.println(item);
+                    }
                     break;
                 default:
                     System.out.println("Comando inválido.");
                     System.out.println();
                     break;
             }
-
         }
     }
 }

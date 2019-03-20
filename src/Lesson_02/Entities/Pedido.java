@@ -1,5 +1,6 @@
 package Lesson_02.Entities;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -55,5 +56,21 @@ public class Pedido extends Data {
             }
         }
         return target;
+    }
+
+    @Override
+    public String toString() {
+        String string = "Pedido: " + codigo + System.lineSeparator()
+                + "Cliente: " + nomeCliente + System.lineSeparator()
+                + "Filial: " + nomeFilial + System.lineSeparator();
+        for (int i = 0; i < items.size(); i++) {
+            DecimalFormat df = new DecimalFormat();
+            df.setMaximumFractionDigits(2);
+            string += (i + 1) + " item: " + items.get(i).name + ", "
+                    + items.get(i).quantity + "units, $" +
+                    df.format(items.get(i).price) + System.lineSeparator();
+        }
+
+        return string;
     }
 }
