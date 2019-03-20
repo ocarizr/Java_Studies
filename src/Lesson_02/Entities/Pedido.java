@@ -6,9 +6,9 @@ import java.util.Date;
 import java.util.List;
 
 public class Pedido extends Data {
-    String nomeCliente;
-    String nomeFilial;
-    private List<Item> items = new ArrayList<Item>();
+    private String nomeCliente;
+    private String nomeFilial;
+    private List<Item> items = new ArrayList<>();
 
     public Pedido(int codigo, Date dataHoraInclusao, Date dataHoraEdicao, String nomeCliente, String nomeFilial) {
         super(codigo, dataHoraInclusao, dataHoraEdicao);
@@ -19,8 +19,7 @@ public class Pedido extends Data {
     public boolean addItem(Item item) {
         items.add(item);
 
-        if (items.contains(item)) return true;
-        return false;
+        return items.contains(item);
     }
 
     public boolean updateItem(Item item) {
@@ -60,17 +59,15 @@ public class Pedido extends Data {
 
     @Override
     public String toString() {
-        String string = "Pedido: " + codigo + System.lineSeparator()
+        StringBuilder string = new StringBuilder("Pedido: " + codigo + System.lineSeparator()
                 + "Cliente: " + nomeCliente + System.lineSeparator()
-                + "Filial: " + nomeFilial + System.lineSeparator();
+                + "Filial: " + nomeFilial + System.lineSeparator());
         for (int i = 0; i < items.size(); i++) {
             DecimalFormat df = new DecimalFormat();
             df.setMaximumFractionDigits(2);
-            string += (i + 1) + " item: " + items.get(i).name + ", "
-                    + items.get(i).quantity + "units, $" +
-                    df.format(items.get(i).price) + System.lineSeparator();
+            string.append(i + 1).append(" item: ").append(items.get(i).name).append(", ").append(items.get(i).quantity).append("units, $").append(df.format(items.get(i).price)).append(System.lineSeparator());
         }
 
-        return string;
+        return string.toString();
     }
 }

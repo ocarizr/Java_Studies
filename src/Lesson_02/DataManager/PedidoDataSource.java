@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PedidoDataSource {
-    private List<Pedido> _pedidos = new ArrayList<Pedido>();
+    private List<Pedido> _pedidos = new ArrayList<>();
 
     public boolean addPedido(Pedido pedido) {
         return _pedidos.add(pedido);
